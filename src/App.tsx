@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import foxmodel from "./assets/Fox.glb";
+import "@google/model-viewer";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	return (
+		<>
+			<div className='model-viewer-container'>
+				{/* model-viewer本体 */}
+				<model-viewer
+					src={foxmodel}
+					alt='Fox model'
+					camera-controls
+					autoplay
+					ar
+					ar-modes='scene-viewer quick-look webxr'
+					ar-scale='auto'
+					style={{ width: "100%", height: "500px" }}>
+					{/* 独自ボタンを表示したい場合 */}
+					<button
+						slot='ar-button'
+						style={{
+							position: "absolute",
+							bottom: "1rem",
+							left: "1rem",
+							padding: "0.5rem 1rem",
+							backgroundColor: "#007bff",
+							color: "white",
+							border: "none",
+							borderRadius: "4px",
+							cursor: "pointer",
+						}}>
+						ARで見る
+					</button>
+				</model-viewer>
+			</div>
+		</>
+	);
 }
 
-export default App
+export default App;
